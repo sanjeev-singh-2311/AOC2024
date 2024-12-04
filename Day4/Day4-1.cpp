@@ -5,41 +5,41 @@ int checkRight(vector<string>& GRID, int i, int j) {
     string temp = "XMAS";
     for (int r = j; r < j + 4; r++) {
         if (r >= GRID[i].size())
-            return false;
+            return 0;
         if (GRID[i][r] != temp[r - j])
-            return false;
+            return 0;
     }
-    return true;
+    return 1;
 }
 int checkLeft(vector<string>& GRID, int i, int j) {
     string temp = "XMAS";
     for (int r = j; r > j - 4; r--) {
         if (r < 0)
-            return false;
+            return 0;
         if (GRID[i][r] != temp[j - r])
-            return false;
+            return 0;
     }
-    return true;
+    return 1;
 }
 int checkUp(vector<string>& GRID, int i, int j) {
     string temp = "XMAS";
     for (int r = i; r > i - 4; r--) {
         if (r < 0)
-            return false;
+            return 0;
         if (GRID[r][j] != temp[i - r])
-            return false;
+            return 0;
     }
-    return true;
+    return 1;
 }
 int checkDown(vector<string>& GRID, int i, int j) {
     string temp = "XMAS";
     for (int r = i; r < i + 4; r++) {
         if (r >= GRID.size())
-            return false;
+            return 0;
         if (GRID[r][j] != temp[r - i])
-            return false;
+            return 0;
     }
-    return true;
+    return 1;
 }
 int checkDiagonals(vector<string>& GRID, int i, int j) {
     string temp = "XMAS";
