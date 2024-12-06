@@ -8,16 +8,18 @@ bool isLooping(vector<string> GRID, int obX, int obY, int currX, int currY) {
     vector<pair<int, int>> velo = {{-1, 0}, {0, 1}, {1, 0}, {0, -1}};
     int dir                     = 0;
     int veloX = velo[dir].first, veloY = velo[dir].second;
-    vector<set<pair<int, int>>> visited(4, set<pair<int, int>>());
+    vector<vector<unordered_set<int>>> visited(m,
+                                               vector<unordered_set<int>>(n, unordered_set<int>()));
 
     while (currX >= 0 && currY >= 0 && currX < m && currY < n) {
-        auto dirM = visited[dir];
-        if (dirM.find({currX, currY}) != dirM.end())
+        auto check = visited[currX][currY];
+        if (check.find(dir) != check.end())
             return true;
-        visited[dir].insert({currX, currY});
+        visited[currX][currY].insert(dir);
         currX += veloX;
         currY += veloY;
         if (currX >= 0 && currY >= 0 && currX < m && currY < n && GRID[currX][currY] == '#') {
+            visited[currX][currY].erase(dir);
             currX -= veloX;
             currY -= veloY;
             dir   = (dir + 1) % 4;
